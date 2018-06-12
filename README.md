@@ -169,7 +169,7 @@ unload mod_cdr_csv
 `service freeswitch restart`
 ### GSM VoIP Gateway
 ### Mobile Device
-### Option 1: Pixel 2 with CopperheadOS
+#### Option 1: Pixel 2 with CopperheadOS
 * Install Copperhead on a device bought in cash (https://copperhead.co/android/docs/install) or buy a device @ https://copperhead.co/android/store
 * Once finished installing open F-Droid and install OpenVPN, Signal, Linphone, and any other apps you may need. WhatsApp can be downloaded as an .apk from their website.
 * Open OpenVPN, import your VPN provider’s .ovpn, enter your username and password, and start the VPN
@@ -179,7 +179,7 @@ unload mod_cdr_csv
 * Open Linphone > Settings > Call > Media Encryption > Toggle SRTP
   * You should now be able to place normal calls over an TLS+SRTP connection to your gateway
 * You’re all set. Consider using Orbot to further obfuscate your metadata when connecting to Signal for only messaging. Calls will be nearly impossible through the Tor network.
-### Option 2: iPod Touch
+#### Option 2: iPod Touch
 * Buy an iPod Touch in cash
 * Create a pseudonymous apple ID
   * iOS might even be more secure than CopperheadOS. However it will leak tons of metadata to Apple, especially during set up. So do setup in a neutral location if you can.
