@@ -49,3 +49,8 @@ The SIP Server
 * Self-hosted Freeswitch server 
 * Located either in your private domicile (setting up behind a NAT will be difficult) or with a trustworthy hosting provider
 * No logs, no crime!
+
+The GSM VoIP Gateway
+* OpenVox WGW1002G with 2 hot swap GSM Channels or similar
+* Located in your private domicile or other secure location of your choice
+* OpenVox is a chinese company. Are they backdooring us? Who knows. I would assume that any GSM calls are being monitored anyways. The important thing is that they can’t be traced back to your physical location because of your VPN/Tor.
