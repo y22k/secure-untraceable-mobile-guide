@@ -56,3 +56,16 @@ The GSM VoIP Gateway
 * OpenVox is a chinese company. Are they backdooring us? Who knows. I would assume that any GSM calls are being monitored anyways. The important thing is that they can’t be traced back to your physical location because of your VPN/Tor.
 
 ## Step-by-Step
+
+### SIP Server (with TLS+SRTP)
+#### Install CentOS 7
+* Get a VPS with CentOS 7. Minimal hardware specs will be fine.
+ * Here’s a list of good options https://torbitcoinvps.github.io/
+* SSH into your VPS with the root account
+* Change root password with: `passwd`
+* You might want to create a user and install sudo at this point. There are various guides online. This one is good https://plusbryan.com/my-first-5-minutes-on-a-server-or-essential-security-for-linux-servers
+#### Install Freeswitch
+`yum install -y http://files.freeswitch.org/freeswitch-release-1-6.noarch.rpm epel-release` (you might have to install and use sudo)
+`yum install -y freeswitch-config-vanilla freeswitch-lang-* freeswitch-sounds-*
+yum install letsencrypt nano
+systemctl enable freeswitch
