@@ -28,7 +28,6 @@ Device OPSEC
 * Keep everything updated
 * Maintain physical control over devices
 
-## Step-by-Step
 The Mobile Device
 * Hardware resistant to GSM exploits: Google Pixel 2 on airplane mode or iPod Touch
 * Secure OS like CopperheadOS or iOS
@@ -55,3 +54,5 @@ The GSM VoIP Gateway
 * OpenVox WGW1002G with 2 hot swap GSM Channels or similar
 * Located in your private domicile or other secure location of your choice
 * OpenVox is a chinese company. Are they backdooring us? Who knows. I would assume that any GSM calls are being monitored anyways. The important thing is that they can’t be traced back to your physical location because of your VPN/Tor.
+
+## Step-by-Step
