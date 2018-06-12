@@ -150,10 +150,13 @@ to
 `nano /etc/freeswtich/autoload_configs/modules.conf.xml`
   * Comment out mod_logfile and mod_cdr_csv
   * Save
-`fs_cli
+
+```fs_cli
 unload mod_logfile
 unload mod_cdr_csv
-/quit`
+/quit
+```
   * Delete any log files that already exist in /var/log/freeswitch
 * Restart Freeswitch
+
 `service freeswitch restart`
