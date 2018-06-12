@@ -73,10 +73,11 @@ systemctl enable freeswitch`
 * Change default extension password
 
 `nano /etc/freeswitch/vars.xml` and change `<X-PRE-PROCESS cmd="set" data="default_password=[your extension password here]"/>`
-* Change domain
+* Change domain in vars.xml
 
 `<X-PRE-PROCESS cmd="set" data="domain=[your FQDN here]"/>`
-* Enable TLS
+* Enable TLS in vars.xml
+
 Change
 
 `<!-- Internal SIP Profile -->
@@ -92,4 +93,67 @@ to
  <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
  <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
  <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=true"/>`
+* Enable outbound SRTP
 
+`nano /etc/freeswitch/dialplan/default.xml`
+
+and change
+
+```<condition field="${rtp_has_crypto}" expression="^($${rtp_sdes_suites})$" break="never">
+        <action application="set" data="rtp_secure_media=true"/>
+        <!-- Offer SRTP on outbound legs if we have it on inbound. -->
+        <!-- <action application="export" data="rtp_secure_media=true"/> -->
+      </condition>
+
+      <!--
+         Since we have inbound-late-negotation on by default now the
+         above behavior isn't the same so you have to do one extra step.
+        -->
+      <condition field="${endpoint_disposition}" expression="^(DELAYED NEGOTIATION)"/>
+      <condition field="${switch_r_sdp}" expression="(AES_CM_128_HMAC_SHA1_32|AES_CM_128_HMAC_SHA1_80)" break="never">
+        <action application="set" data="rtp_secure_media=true"/>
+        <!-- Offer SRTP on outbound legs if we have it on inbound. -->
+        <!-- <action application="export" data="rtp_secure_media=true"/> -->
+      </condition>
+```
+to
+
+```<condition field="${rtp_has_crypto}" expression="^($${rtp_sdes_suites})$" break="never">
+        <action application="set" data="rtp_secure_media=true"/>
+        <!-- Offer SRTP on outbound legs if we have it on inbound. -->
+        <action application="export" data="rtp_secure_media=true"/>
+      </condition>
+
+      <!--
+         Since we have inbound-late-negotation on by default now the
+         above behavior isn't the same so you have to do one extra step.
+        -->
+      <condition field="${endpoint_disposition}" expression="^(DELAYED NEGOTIATION)"/>
+      <condition field="${switch_r_sdp}" expression="(AES_CM_128_HMAC_SHA1_32|AES_CM_128_HMAC_SHA1_80)" break="never">
+        <action application="set" data="rtp_secure_media=true"/>
+        <!-- Offer SRTP on outbound legs if we have it on inbound. -->
+        <action application="export" data="rtp_secure_media=true"/>
+      </condition>
+```
+* Create letsencrypt certificate
+
+`letsencrypt certonly --standalone -d [your FQDN here]`
+* Make TLS directory
+
+`mkdir /etc/freeswitch/tls`
+* Copy letsencrypt certificate into TLS directory
+
+`cat /etc/letsencrypt/live/[your FQDN here]/fullchain.pem /etc/letsencrypt/live/[your FQDN here]/privkey.pem > /etc/freeswitch/tls/wss.pem && cat /etc/letsencrypt/live/[your FQDN here]/fullchain.pem /etc/letsencrypt/live/[your FQDN here]/privkey.pem > /etc/freeswitch/tls/tls.pem`
+* Change TLS directory permissions
+`chown freeswitch.daemon /etc/freeswitch/tls && chown -R freeswitch.daemon /etc/freeswitch/tls`
+* Disable logging
+`nano /etc/freeswtich/autoload_configs/modules.conf.xml`
+  * Comment out mod_logfile and mod_cdr_csv
+  * Save
+`fs_cli
+unload mod_logfile
+unload mod_cdr_csv
+/quit`
+  * Delete any log files that already exist in /var/log/freeswitch
+* Restart Freeswitch
+`service freeswitch restart`
