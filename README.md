@@ -65,10 +65,11 @@ The GSM VoIP Gateway
 * Change root password with: `passwd`
 * You might want to create a user and install sudo at this point. There are various guides online. This one is good https://plusbryan.com/my-first-5-minutes-on-a-server-or-essential-security-for-linux-servers
 #### Install Freeswitch
-`yum install -y http://files.freeswitch.org/freeswitch-release-1-6.noarch.rpm epel-release
+```yum install -y http://files.freeswitch.org/freeswitch-release-1-6.noarch.rpm epel-release
 yum install -y freeswitch-config-vanilla freeswitch-lang-* freeswitch-sounds-*
 yum install letsencrypt nano
-systemctl enable freeswitch`
+systemctl enable freeswitch
+```
 #### Configure Freeswitch
 * Change default extension password
 
@@ -80,19 +81,20 @@ systemctl enable freeswitch`
 
 Change
 
-`<!-- Internal SIP Profile -->
+```<!-- Internal SIP Profile -->
  <X-PRE-PROCESS cmd="set" data="internal_auth_calls=true"/>
  <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
  <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
  <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=false"/>`
-
+```
 to
 
-`<!-- Internal SIP Profile -->
+```<!-- Internal SIP Profile -->
  <X-PRE-PROCESS cmd="set" data="internal_auth_calls=true"/>
  <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
  <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
- <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=true"/>`
+ <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=true"/>
+```
 * Enable outbound SRTP
 
 `nano /etc/freeswitch/dialplan/default.xml`
