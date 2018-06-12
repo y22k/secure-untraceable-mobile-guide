@@ -168,6 +168,7 @@ unload mod_cdr_csv
 
 `service freeswitch restart`
 ### GSM VoIP Gateway
+` work in progress`
 ### Mobile Device
 #### Option 1: Pixel 2 with CopperheadOS
 * Install Copperhead on a device bought in cash (https://copperhead.co/android/docs/install) or buy a device @ https://copperhead.co/android/store
