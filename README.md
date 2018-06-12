@@ -2,7 +2,7 @@
 
 This guide will show you how to create a secure, untraceable mobile device that can use both encrypted messaging services, like Signal, and the normal cellphone network.
 
-
+![alt text](https://github.com/y22k/secure-untraceable-mobile-guide/raw/master/diagram.jpg)
 
 ## Introduction
 
