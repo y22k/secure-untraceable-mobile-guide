@@ -28,6 +28,7 @@ Device OPSEC
 * Keep everything updated
 * Maintain physical control over devices
 
+## Step-by-Step
 The Mobile Device
 * Hardware resistant to GSM exploits: Google Pixel 2 on airplane mode or iPod Touch
 * Secure OS like CopperheadOS or iOS
