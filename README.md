@@ -57,6 +57,8 @@ The GSM VoIP Gateway
 
 ## Step-by-Step
 
+### VPN
+* Setup through Tor and buy with Bitcoin, Monero, Zcash, or Giftcard. https://www.privacytools.io/ has a list of good VPN providers.
 ### SIP Server (with TLS+SRTP)
 #### Install CentOS 7
 * Get a VPS with CentOS 7. Minimal hardware specs will be fine.
@@ -195,10 +197,13 @@ unload mod_cdr_csv
   * You should now be able to place normal calls over an TLS+SRTP connection to your gateway
 * Remember that iOS is not open source so you are putting a considerable amount of faith in Apple’s good will.
 * This is a good source for iOS OPSEC https://yawnbox.com/2016/06/29/iphone-opsec-guide/
+### SIM Card
+* Buy a high capacity 4G LTE sim card in cash from a store
 ### Mobile Router
 * Buy a mobile router in cash from a store. Preferably one with an Ethernet connection, that you can connect to over USB-C to Ethernet adapter, so you don’t leak WiFi metadata. This is a good example: https://www.amazon.com/Huawei-E5770s-320-Mobile-Hotspot-globally/dp/B014RA2QE6/ref=sr_1_1?ie=UTF8&qid=1528719097&sr=8-1&keywords=e5770
 * Set up should be fairly straight forward and is detailed in the User Manual
-### SIM Card
-* Buy a high capacity 4G LTE sim card in cash from a store
-### VPN
-* Setup through Tor and buy with Bitcoin, Monero, Zcash, or Giftcard. https://www.privacytools.io/ has a list of good VPN providers.
+* Insert SIM card
+* Connect mobile device to mobile router through WiFi or Ethernet to USB-C adapter
+* Connect to VPN
+* Profit!
+
