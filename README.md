@@ -205,5 +205,6 @@ unload mod_cdr_csv
 * Insert SIM card
 * Connect mobile device to mobile router through WiFi or Ethernet to USB-C adapter
 * Connect to VPN
+* ?
 * Profit!
 
