@@ -81,7 +81,8 @@ systemctl enable freeswitch
 
 Change
 
-```<!-- Internal SIP Profile -->
+```
+<!-- Internal SIP Profile -->
  <X-PRE-PROCESS cmd="set" data="internal_auth_calls=true"/>
  <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
  <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
@@ -89,7 +90,8 @@ Change
 ```
 to
 
-```<!-- Internal SIP Profile -->
+```
+<!-- Internal SIP Profile -->
  <X-PRE-PROCESS cmd="set" data="internal_auth_calls=true"/>
  <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
  <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
@@ -101,7 +103,8 @@ to
 
 and change
 
-```<condition field="${rtp_has_crypto}" expression="^($${rtp_sdes_suites})$" break="never">
+```
+<condition field="${rtp_has_crypto}" expression="^($${rtp_sdes_suites})$" break="never">
         <action application="set" data="rtp_secure_media=true"/>
         <!-- Offer SRTP on outbound legs if we have it on inbound. -->
         <!-- <action application="export" data="rtp_secure_media=true"/> -->
@@ -120,7 +123,8 @@ and change
 ```
 to
 
-```<condition field="${rtp_has_crypto}" expression="^($${rtp_sdes_suites})$" break="never">
+```
+<condition field="${rtp_has_crypto}" expression="^($${rtp_sdes_suites})$" break="never">
         <action application="set" data="rtp_secure_media=true"/>
         <!-- Offer SRTP on outbound legs if we have it on inbound. -->
         <action application="export" data="rtp_secure_media=true"/>
@@ -153,7 +157,8 @@ to
   * Comment out mod_logfile and mod_cdr_csv
   * Save
 
-```fs_cli
+```
+fs_cli
 unload mod_logfile
 unload mod_cdr_csv
 /quit
