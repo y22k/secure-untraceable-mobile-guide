@@ -99,50 +99,6 @@ to
  <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
  <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=true"/>
 ```
-* Enable outbound SRTP
-
-`nano /etc/freeswitch/dialplan/default.xml`
-
-and change
-
-```
-<condition field="${rtp_has_crypto}" expression="^($${rtp_sdes_suites})$" break="never">
-        <action application="set" data="rtp_secure_media=true"/>
-        <!-- Offer SRTP on outbound legs if we have it on inbound. -->
-        <!-- <action application="export" data="rtp_secure_media=true"/> -->
-      </condition>
-
-      <!--
-         Since we have inbound-late-negotation on by default now the
-         above behavior isn't the same so you have to do one extra step.
-        -->
-      <condition field="${endpoint_disposition}" expression="^(DELAYED NEGOTIATION)"/>
-      <condition field="${switch_r_sdp}" expression="(AES_CM_128_HMAC_SHA1_32|AES_CM_128_HMAC_SHA1_80)" break="never">
-        <action application="set" data="rtp_secure_media=true"/>
-        <!-- Offer SRTP on outbound legs if we have it on inbound. -->
-        <!-- <action application="export" data="rtp_secure_media=true"/> -->
-      </condition>
-```
-to
-
-```
-<condition field="${rtp_has_crypto}" expression="^($${rtp_sdes_suites})$" break="never">
-        <action application="set" data="rtp_secure_media=true"/>
-        <!-- Offer SRTP on outbound legs if we have it on inbound. -->
-        <action application="export" data="rtp_secure_media=true"/>
-      </condition>
-
-      <!--
-         Since we have inbound-late-negotation on by default now the
-         above behavior isn't the same so you have to do one extra step.
-        -->
-      <condition field="${endpoint_disposition}" expression="^(DELAYED NEGOTIATION)"/>
-      <condition field="${switch_r_sdp}" expression="(AES_CM_128_HMAC_SHA1_32|AES_CM_128_HMAC_SHA1_80)" break="never">
-        <action application="set" data="rtp_secure_media=true"/>
-        <!-- Offer SRTP on outbound legs if we have it on inbound. -->
-        <action application="export" data="rtp_secure_media=true"/>
-      </condition>
-```
 * Create letsencrypt certificate
 
 `letsencrypt certonly --standalone -d [your FQDN here]`
@@ -170,7 +126,54 @@ unload mod_cdr_csv
 
 `service freeswitch restart`
 ### GSM VoIP Gateway
-` work in progress`
+* Physical Setup
+  * This assumes that your Gateway is set up at home behind a Firewall
+  * The OpenVox WGW1002G comes with the default static IP 172.16.99.1. If this is not on your subnet you will have to plugin to the same switch as the WGW1002G, type 172.16.99.1 into your browser bar, login in with username admin & password admin, and change `Network > LAN Settings > LAN IPv4` to `DHCP`.
+  * Change default passwords
+  * Plugin SIM Card
+  * Restart
+  * Give the device some time to register your SIM
+* VoIP Endpoint
+  * Go to `VOIP > VoIP Endpoints > Add New SIP Endpoint`
+  ```
+  Name: voxstack
+  User Name: voxstack
+  Password: [your password of choice here]
+  Registration: Client
+  Hostname or IP Address: [your FQDN here]
+  Transport: UDP
+  NAT Traversal: Yes
+  ```
+  * Save
+* Inbound Routing Rule
+  * Go to `ROUTING > Call Routing Rules > New Calling Rule`
+  ```
+  Routing Name: inbound
+  Call Comes in From: [gsm module your SIM is in]
+  Send Call Through: voxstack
+  ```
+  * Save
+* Outbound Routing Rule
+  * Go to `ROUTING > Call Routing Rules > New Calling Rule`
+  ```
+  Routing Name: outbound
+  Call Comes in From: voxstack
+  Send Call Through: [gsm module your SIM is in]
+  ```
+  * Save
+* SIP Trunk in FreeSWITCH
+```
+nano /etc/freeswitch/dialplan/default.xml
+<extension name="voxstack2012_gateway">
+  <condition field="destination_number" expression="^9(\d+)$">
+    <action application="answer"/>
+    <action application="set" data="ringback=${us-ring}"/>
+    <action application="bridge" data="sofia/internal/$1@[your home IP or ddns]"/>
+    </condition>
+</extension>
+```
+* Dialing Rules in FreeSWITCH
+
 ### Mobile Device
 #### Option 1: Pixel 2 with CopperheadOS
 * Install Copperhead on a device bought in cash (https://copperhead.co/android/docs/install) or buy a device @ https://copperhead.co/android/store
