@@ -56,7 +56,7 @@ The GSM VoIP Gateway
 * OpenVox is a chinese company. Are they backdooring us? Who knows. I would assume that any GSM calls are being monitored anyways. The important thing is that they can’t be traced back to your physical location because of your VPN/Tor.
 
 ## Step-by-Step
-
+Note: These [] indicate a value you choose. Don't include the brackets. Common mistake.
 ### VPN
 * Setup through Tor and buy with Bitcoin, Monero, Zcash, or Giftcard. https://www.privacytools.io/ has a list of good VPN providers.
 ### SIP Server (with TLS+SRTP)
@@ -215,7 +215,7 @@ Append this to the bottom of the 00_inbound_did.xml
 </extension>
 </include>
 ```
-* You have to dial 9[the number you want to call] to call out. Outside calls will simply be directed to extension 1000.
+* You have to dial 9[the number you want to call] to call out. Ex. 9017123456789. Outside calls will simply be directed to extension 1000.
 * Check out this guide http://openvox.cn/pub/documents/other_documents/Quickstart_Guide_of_OpenVox_GSM_Gateway_WGW1002G_Connect_with_FreeSWITCH_Server.pdf
  
 ### Mobile Device
