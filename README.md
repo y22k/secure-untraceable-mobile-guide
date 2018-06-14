@@ -164,6 +164,30 @@ unload mod_cdr_csv
   * Save
 * SIP Trunk in FreeSWITCH
 ```
+nano /etc/freeswitch/directory/default/voxstack.xml
+```
+Insert this
+```
+include>
+  <user id="voxstack">
+    <params>
+      <param name="password" value="[your password of choice here]"/>
+      <param name="vm-password" value="9999"/>
+    </params>
+    <variables>
+<!-- all variables here will be set on all inbound calls that originate from
+this user -->
+<variable name="user_context" value="public"/>
+<variable name="effective_caller_id_name" value="voxstack"/>
+<variable name="effective_caller_id_number" value="2012"/>
+<!--Don't write a CDR if this is false valid values are: true, false,a_leg and $
+<variable name="process_cdr" value="true"/>
+</variables>
+</user>
+</include>
+```
+* Outbound Dialing Rules in FreeSWITCH
+```
 nano /etc/freeswitch/dialplan/default.xml
 ```
 Append this before `<extension name="enum">`
@@ -176,7 +200,7 @@ Append this before `<extension name="enum">`
     </condition>
 </extension>
 ```
-* Dialing Rules in FreeSWITCH
+* Inbound Dialing Rules in FreeSWITCH
 ```
 nano /etc/freeswitch/dialplan/public/00_inbound_did.xml
 ```
@@ -191,7 +215,9 @@ Append this to the bottom of the 00_inbound_did.xml
 </extension>
 </include>
 ```
-* 
+* You have to dial 9<the number you want to call> to call out. Outside calls will simply be directed to extension 1000.
+* Check out this guide http://openvox.cn/pub/documents/other_documents/Quickstart_Guide_of_OpenVox_GSM_Gateway_WGW1002G_Connect_with_FreeSWITCH_Server.pdf
+ 
 ### Mobile Device
 #### Option 1: Pixel 2 with CopperheadOS
 * Install Copperhead on a device bought in cash (https://copperhead.co/android/docs/install) or buy a device @ https://copperhead.co/android/store
