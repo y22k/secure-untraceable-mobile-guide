@@ -164,6 +164,9 @@ unload mod_cdr_csv
 * SIP Trunk in FreeSWITCH
 ```
 nano /etc/freeswitch/dialplan/default.xml
+```
+Append this before `<extension name="enum">`
+```
 <extension name="voxstack2012_gateway">
   <condition field="destination_number" expression="^9(\d+)$">
     <action application="answer"/>
@@ -173,7 +176,20 @@ nano /etc/freeswitch/dialplan/default.xml
 </extension>
 ```
 * Dialing Rules in FreeSWITCH
-
+```
+nano /etc/freeswitch/dialplan/public/00_inbound_did.xml
+```
+Append this to the bottom of the 00_inbound_did.xml
+```
+<include>
+<extension name="public_did">
+  <condition field="destination_number" expression="^(.+)$">
+    <action application="set" data="domain_name=$${domain}"/>
+    <action application="transfer" data="1000 XML default"/>
+    </condition>
+</extension>
+</include>
+```
 ### Mobile Device
 #### Option 1: Pixel 2 with CopperheadOS
 * Install Copperhead on a device bought in cash (https://copperhead.co/android/docs/install) or buy a device @ https://copperhead.co/android/store
