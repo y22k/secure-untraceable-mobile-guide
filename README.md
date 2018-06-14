@@ -215,7 +215,7 @@ Append this to the bottom of the 00_inbound_did.xml
 </extension>
 </include>
 ```
-* You have to dial 9<the number you want to call> to call out. Outside calls will simply be directed to extension 1000.
+* You have to dial 9[the number you want to call] to call out. Outside calls will simply be directed to extension 1000.
 * Check out this guide http://openvox.cn/pub/documents/other_documents/Quickstart_Guide_of_OpenVox_GSM_Gateway_WGW1002G_Connect_with_FreeSWITCH_Server.pdf
  
 ### Mobile Device
