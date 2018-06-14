@@ -168,7 +168,7 @@ nano /etc/freeswitch/directory/default/voxstack.xml
 ```
 Insert this
 ```
-include>
+<include>
   <user id="voxstack">
     <params>
       <param name="password" value="[your password of choice here]"/>
@@ -223,10 +223,10 @@ Append this to the bottom of the 00_inbound_did.xml
 * Install Copperhead on a device bought in cash (https://copperhead.co/android/docs/install) or buy a device @ https://copperhead.co/android/store
 * Once finished installing open F-Droid and install OpenVPN, Signal, Linphone, and any other apps you may need. WhatsApp can be downloaded as an .apk from their website.
 * Open OpenVPN, import your VPN provider’s .ovpn, enter your username and password, and start the VPN
-* Open Settings > Network & Internet > VPN > OpenVPN for Android > Gear Icon > Toggle Always-On VPN and Block connections without VPN
+* Open `Settings > Network & Internet > VPN > OpenVPN for Android > Gear Icon > Toggle Always-On VPN and Block connections without VPN`
 * Open Signal and register with your preferred phone number. You can also use any other encrypted messenger of choice but I can recommend Signal for its strong encryption and commitment to zero metadata.
-* Open Linphone > Use SIP Account > Username: 1000, Password: [your extension password here], Domain: [your FQDN here], Transport: TLS
-* Open Linphone > Settings > Call > Media Encryption > Toggle SRTP
+* Open `Linphone > Use SIP Account > Username: 1000, Password: [your extension password here], Domain: [your FQDN here], Transport: TLS`
+* Open `Linphone > Settings > Call > Media Encryption > Toggle SRTP`
   * You should now be able to place normal calls over an TLS+SRTP connection to your gateway
 * You’re all set. Consider using Orbot to further obfuscate your metadata when connecting to Signal for only messaging. Calls will be nearly impossible through the Tor network.
 #### Option 2: iPod Touch
@@ -239,8 +239,8 @@ Append this to the bottom of the 00_inbound_did.xml
   * Make sure you’re always connected to your VPN when you use Signal or Linphone since iOS doesn’t have a “Block connections without VPN” feature.
   * A good procedural example: https://protonvpn.com/support/ios-vpn-setup/
 * Open Signal and register with your preferred phone number. You can also use any other encrypted messenger of choice but I can recommend Signal for its strong encryption and commitment to zero metadata.
-* Open Linphone > Use SIP Account > Username: 1000, Password: [your extension password here], Domain: [your FQDN here], Transport: TLS
-* Open Linphone Settings > Network > Media Encryption > Toggle SRTP
+* Open `Linphone > Use SIP Account > Username: 1000, Password: [your extension password here], Domain: [your FQDN here], Transport: TLS`
+* Open `Linphone Settings > Network > Media Encryption > Toggle SRTP`
   * You should now be able to place normal calls over an TLS+SRTP connection to your gateway
 * Remember that iOS is not open source so you are putting a considerable amount of faith in Apple’s good will.
 * This is a good source for iOS OPSEC https://yawnbox.com/2016/06/29/iphone-opsec-guide/
