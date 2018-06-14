@@ -67,7 +67,8 @@ The GSM VoIP Gateway
 * Change root password with: `passwd`
 * You might want to create a user and install sudo at this point. There are various guides online. This one is good https://plusbryan.com/my-first-5-minutes-on-a-server-or-essential-security-for-linux-servers
 #### Install Freeswitch
-```yum install -y http://files.freeswitch.org/freeswitch-release-1-6.noarch.rpm epel-release
+```
+yum install -y http://files.freeswitch.org/freeswitch-release-1-6.noarch.rpm epel-release
 yum install -y freeswitch-config-vanilla freeswitch-lang-* freeswitch-sounds-*
 yum install letsencrypt nano
 systemctl enable freeswitch
@@ -81,24 +82,24 @@ systemctl enable freeswitch
 `<X-PRE-PROCESS cmd="set" data="domain=[your FQDN here]"/>`
 * Enable TLS in vars.xml
 
-Change
+  Change
 
-```
-<!-- Internal SIP Profile -->
- <X-PRE-PROCESS cmd="set" data="internal_auth_calls=true"/>
- <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
- <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
- <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=false"/>`
-```
-to
+  ```
+  <!-- Internal SIP Profile -->
+   <X-PRE-PROCESS cmd="set" data="internal_auth_calls=true"/>
+   <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
+   <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
+   <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=false"/>`
+  ```
+  to
 
-```
-<!-- Internal SIP Profile -->
- <X-PRE-PROCESS cmd="set" data="internal_auth_calls=true"/>
- <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
- <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
- <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=true"/>
-```
+  ```
+  <!-- Internal SIP Profile -->
+   <X-PRE-PROCESS cmd="set" data="internal_auth_calls=true"/>
+   <X-PRE-PROCESS cmd="set" data="internal_sip_port=5060"/>
+   <X-PRE-PROCESS cmd="set" data="internal_tls_port=5061"/>
+   <X-PRE-PROCESS cmd="set" data="internal_ssl_enable=true"/>
+  ```
 * Create letsencrypt certificate
 
 `letsencrypt certonly --standalone -d [your FQDN here]`
@@ -190,6 +191,7 @@ Append this to the bottom of the 00_inbound_did.xml
 </extension>
 </include>
 ```
+* 
 ### Mobile Device
 #### Option 1: Pixel 2 with CopperheadOS
 * Install Copperhead on a device bought in cash (https://copperhead.co/android/docs/install) or buy a device @ https://copperhead.co/android/store
@@ -224,6 +226,6 @@ Append this to the bottom of the 00_inbound_did.xml
 * Insert SIM card
 * Connect mobile device to mobile router through WiFi or Ethernet to USB-C adapter
 * Connect to VPN
-* ?
+* ??
 * Profit!
 
