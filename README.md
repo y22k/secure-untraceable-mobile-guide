@@ -257,7 +257,11 @@ Append this to the bottom of the 00_inbound_did.xml
 
 ## Donations
 I dont want your money. Just write me an email if you found the guide helpful or need support.
+
 Email: yVm4kE8@protonmail.ch
+
 PGP Key Fingerprint: `6613 8C2E FAC4 E589 FE06  B483 44FB 89E9 187A CBA2`
+
 Inline PGP preferred. 
+
 You can find the key in the repository: `publickey.yVm4kE8@protonmail.ch.asc`
